@@ -11,32 +11,49 @@ namespace Accenture.Commun.TextHelper
     {
         public static string StandardizeText(string txt)
         {
-            return RemoveAccent(txt.Trim().ToLower());
+            if (!string.IsNullOrWhiteSpace(txt))
+                return RemoveAccent(txt.Trim().ToLower());
+            else
+                return "";
         }
         public static string PrepareToSqlInsert(string txt)
         {
-            return RemoveAccent(txt.Trim().Replace("'","''"));
+            if (!string.IsNullOrWhiteSpace(txt))
+                return RemoveAccent(txt?.Trim().Replace("'", "''"));
+            else
+                return "";
         }
         public static string ConditionToSq(string txt)
         {
-            return RemoveAccent(txt.Trim().Replace("'","''").Replace("[", "_").Replace("]", "_"));
+            if (!string.IsNullOrWhiteSpace(txt))
+                return RemoveAccent(PrepareToSqlInsert(txt).Replace("[", "_").Replace("]", "_"));
+            else
+                return "";
         }
-        public static string WhereLikeToSq(string txt)
+        public static string WhereLikeToSql(string txt)
         {
-            return (!string.IsNullOrWhiteSpace(txt) ? string.Format("%{0}%", ConditionToSq(txt)) : "");
+            if (!string.IsNullOrWhiteSpace(txt))
+                return (!string.IsNullOrWhiteSpace(txt) ? string.Format("%{0}%", ConditionToSq(txt)) : "");
+            else
+                return "";
         }
 
         public static string RemoveAccent(string txt)
         {
-            StringBuilder sbReturn = new StringBuilder();
-            var arrayText = txt.Normalize(NormalizationForm.FormD).ToCharArray();
-            foreach (char letter in arrayText)
+            if (!string.IsNullOrWhiteSpace(txt))
             {
-                if (CharUnicodeInfo.GetUnicodeCategory(letter) != UnicodeCategory.NonSpacingMark)
-                    sbReturn.Append(letter);
-            }
+                StringBuilder sbReturn = new StringBuilder();
+                var arrayText = txt.Normalize(NormalizationForm.FormD).ToCharArray();
+                foreach (char letter in arrayText)
+                {
+                    if (CharUnicodeInfo.GetUnicodeCategory(letter) != UnicodeCategory.NonSpacingMark)
+                        sbReturn.Append(letter);
+                }
 
-            return sbReturn.ToString();
+                return sbReturn.ToString();
+            }
+            else
+                return "";
         }
     }
 }

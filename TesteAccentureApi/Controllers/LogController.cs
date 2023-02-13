@@ -1,5 +1,6 @@
 ﻿using Accenture.BusinessEntities;
 using Accenture.BusinessRulesInterface;
+using Accenture.Commun.TextHelper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using static Accenture.BusinessEntities.LogInfo;
+using static Accenture.BusinessEntities.LogType;
 
 namespace TesteAccentureApi.Controllers
 {
@@ -33,28 +35,33 @@ namespace TesteAccentureApi.Controllers
 		/// <param name="value"></param>
 		/// <returns> Informação de quantos registros foram inseridos </returns>
 		/// <response code = "200"> Quantidade de registros inseridos</response>
-		/// <response code = "500"> Erro na consulta</response>
+		/// <response code = "400"> Erro no cadastro</response>
+		/// <response code = "500"> Erro interno</response>
+		/// <response code = "429"> Limite de requisições atingido</response>
 		[Route("ImportLogFile")]
 		[HttpPost]
 		public async Task<IActionResult> ImportLogFile(IFormFile file)
 		{
 			try
 			{
-				if (file.Length <= 0)
-				return BadRequest("Empty file");
+				if (file == null || (file != null && file.Length <= 0))
+					return BadRequest("Deve ser informado enviado um arquivo.");
 
-				//Strip out any path specifiers (ex: /../)
+				if (!StringCompare.CompareString(Path.GetExtension(file.FileName), ".log"))
+					return BadRequest("Erro!! Extensão do arquivo deve ser do tipo 'log'");
+
 				var originalFileName = Path.GetFileName(file.FileName);
 
-				//Create a unique file path
 				var uniqueFileName = Path.GetRandomFileName();
 				var uniqueFilePath = Path.Combine(@"C:\temp\", Path.GetFileNameWithoutExtension(uniqueFileName) + Path.GetExtension(originalFileName));
 
-				//Save the file to disk
 				using (var stream = System.IO.File.Create(uniqueFilePath))
 				{
 					await file.CopyToAsync(stream);
 				}
+
+				if (string.IsNullOrWhiteSpace(uniqueFilePath) || uniqueFilePath.Length < 3)
+					return BadRequest("Erro!! É necessário um caminho válido do arquivo");
 
 				var quantity = this.LogBusinessRules.SaveLogInfoFromFile(uniqueFilePath);
 
@@ -62,7 +69,7 @@ namespace TesteAccentureApi.Controllers
 			}
 			catch (Exception ex)
 			{
-				return BadRequest(ex.Message);
+				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
 			}
 		}
 
@@ -73,7 +80,9 @@ namespace TesteAccentureApi.Controllers
 		/// <param name="value"></param>
 		/// <returns> Retorna os tipos de logs que foram tipificados para realizar o filtro </returns>
 		/// <response code = "200"> Lista de tipos de logs </response>
-		/// <response code = "500"> Erro na consulta</response>
+		/// <response code = "400"> Erro na consulta</response>
+		/// <response code = "500"> Erro interno</response>
+		/// <response code = "429"> Limite de requisições atingido</response>
 		/// 
 		[Route("GetLogTypes")]
 		[HttpGet]
@@ -87,7 +96,7 @@ namespace TesteAccentureApi.Controllers
 			}
 			catch (Exception ex)
 			{
-				return BadRequest(ex.Message);
+				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
 			}
 		}
 
@@ -98,11 +107,13 @@ namespace TesteAccentureApi.Controllers
 		/// <param name="value"></param>
 		/// <returns> Filtra os logs importados </returns>
 		/// <response code = "200"> Lista de logs paginados</response>
-		/// <response code = "500"> Erro na consulta</response>
+		/// <response code = "400"> Erro na consulta</response>
+		/// <response code = "500"> Erro interno</response>
+		/// <response code = "429"> Limite de requisições atingido</response>
 
 		[Route("GetLogInfo")]
 		[HttpGet]
-		public ActionResult<LogInfosPaginationResponse> GetLogInfo(string LogIdentification = null, int? LogTypeId = null, string LogIp = null, string Description = null, int Page = 1, int RowsPerpage = 20)
+		public ActionResult<LogInfosPaginationResponse> GetLogInfo(ELogType? LogTypeId = null, string LogDate = null, string LogIdentification = null, string LogIp = null, string Description = null, int Page = 1, int RowsPerpage = 20)
 		{
             try
             {
@@ -115,9 +126,11 @@ namespace TesteAccentureApi.Controllers
 					return BadRequest("A pagina deve ser válida.");
 
 
-				var result = this.LogBusinessRules.GetLogInfosPagination(new LogInfosPaginationRequest() {
+				var result = this.LogBusinessRules.GetLogInfosPagination(new LogInfosPaginationRequest()
+				{
+					LogDate = LogDate,
 					LogIdentification = LogIdentification,
-					LogTypeId = LogTypeId,
+					LogTypeId = (int?)LogTypeId,
 					Description = Description,
 					LogIp = LogIp,
 
@@ -128,9 +141,9 @@ namespace TesteAccentureApi.Controllers
 				return Ok(result);
 			}
             catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+			}
 		}
 
 		// POST /Log/GetResumeLogInfo
@@ -140,7 +153,9 @@ namespace TesteAccentureApi.Controllers
 		/// <param name="value"></param>
 		/// <returns> Resumo dos logs com porcentagem de registros </returns>
 		/// <response code = "200"> Agrupagmento de logs com porcentagem </response>
-		/// <response code = "500"> Erro na consulta</response>
+		/// <response code = "400"> Erro na consulta</response>
+		/// <response code = "500"> Erro interno</response>
+		/// <response code = "429"> Limite de requisições atingido</response>
 		/// 
 		[Route("GetResumeLogInfo")]
 		[HttpGet]
@@ -154,7 +169,7 @@ namespace TesteAccentureApi.Controllers
 			}
 			catch (Exception ex)
 			{
-				return BadRequest(ex.Message);
+				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
 			}
 		}
 	}

@@ -35,20 +35,6 @@ namespace Accenture.BusinessRules
 
             using (TransactionScope scope = new TransactionScope())
             {
-                #region Validações
-                var errorException = new List<string>();
-
-                if (string.IsNullOrWhiteSpace(FilePath) || FilePath.Length < 3)
-                    errorException.Add("Erro!! É necessário um caminho válido do arquivo");
-
-                if (!StringCompare.CompareString(Path.GetExtension(FilePath), ".log"))
-                    errorException.Add("Erro!! Extensão do arquivo deve ser do tipo 'log'");
-
-                if (errorException != null && errorException.Count > 0)
-                    throw new Exception(String.Join(";", errorException));
-
-                #endregion Validações
-
                 //Pegando os logs do arquivo
                 var ListLogInfo = this.GetLogInfoFromFile(FilePath);
 
@@ -98,10 +84,21 @@ namespace Accenture.BusinessRules
                     #region Preenchendo entidade do log
                     var logItem = new LogInfo();
 
-                    var Date = LogInfoString.Substring(0, 15);
-                    var IpLog = LogInfoString.Substring(16, 16);
-                    var IpIdentification = LogInfoString.Substring(33, 11);
-                    var Description = LogInfoString.Substring(44, LogInfoString.Length - 44);
+                    if (LogInfoString.Length < 46)
+                        continue;
+
+                    var ipStartString = NormalizeString.StandardizeText(LogInfoString).IndexOf("ip");
+
+                    if(ipStartString < 0 || LogInfoString.IndexOf("]:") < 0)
+                        continue;
+
+                    var IpIdentificationStart = ipStartString + 17;
+                    var DescriptionStart = LogInfoString.IndexOf("]:") + 2;
+
+                    var Date = LogInfoString.Substring(0, ipStartString);
+                    var IpLog = LogInfoString.Substring(ipStartString, 16);
+                    var IpIdentification = LogInfoString.Substring(IpIdentificationStart, (DescriptionStart - 1) - IpIdentificationStart);
+                    var Description = LogInfoString.Substring(DescriptionStart, (LogInfoString.Length) - DescriptionStart);
 
                     logItem.LogDate = Date;
                     logItem.LogIp = IpLog;

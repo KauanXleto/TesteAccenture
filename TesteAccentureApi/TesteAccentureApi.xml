@@ -11,7 +11,9 @@
             <param name="value"></param>
             <returns> Informação de quantos registros foram inseridos </returns>
             <response code = "200"> Quantidade de registros inseridos</response>
-            <response code = "500"> Erro na consulta</response>
+            <response code = "400"> Erro no cadastro</response>
+            <response code = "500"> Erro interno</response>
+            <response code = "429"> Limite de requisições atingido</response>
         </member>
         <member name="M:TesteAccentureApi.Controllers.LogController.GetLogTypes">
             <summary>
@@ -20,17 +22,21 @@
             <param name="value"></param>
             <returns> Retorna os tipos de logs que foram tipificados para realizar o filtro </returns>
             <response code = "200"> Lista de tipos de logs </response>
-            <response code = "500"> Erro na consulta</response>
+            <response code = "400"> Erro na consulta</response>
+            <response code = "500"> Erro interno</response>
+            <response code = "429"> Limite de requisições atingido</response>
             
         </member>
-        <member name="M:TesteAccentureApi.Controllers.LogController.GetLogInfo(System.String,System.Nullable{System.Int32},System.String,System.String,System.Int32,System.Int32)">
+        <member name="M:TesteAccentureApi.Controllers.LogController.GetLogInfo(System.Nullable{Accenture.BusinessEntities.LogType.ELogType},System.String,System.String,System.String,System.String,System.Int32,System.Int32)">
             <summary>
             Filtra os logs importados
             </summary>
             <param name="value"></param>
             <returns> Filtra os logs importados </returns>
             <response code = "200"> Lista de logs paginados</response>
-            <response code = "500"> Erro na consulta</response>
+            <response code = "400"> Erro na consulta</response>
+            <response code = "500"> Erro interno</response>
+            <response code = "429"> Limite de requisições atingido</response>
         </member>
         <member name="M:TesteAccentureApi.Controllers.LogController.GetResumeLogInfo">
             <summary>
@@ -39,7 +45,9 @@
             <param name="value"></param>
             <returns> Resumo dos logs com porcentagem de registros </returns>
             <response code = "200"> Agrupagmento de logs com porcentagem </response>
-            <response code = "500"> Erro na consulta</response>
+            <response code = "400"> Erro na consulta</response>
+            <response code = "500"> Erro interno</response>
+            <response code = "429"> Limite de requisições atingido</response>
             
         </member>
     </members>

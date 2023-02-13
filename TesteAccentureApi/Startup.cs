@@ -58,6 +58,9 @@ namespace TesteAccentureApi
                 // pick comments from classes, include controller comments: another tip from StackOverflow
                 c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
             });
+
+            // Add Rate Limiting
+            services.AddRateLimiting(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +78,8 @@ namespace TesteAccentureApi
                .AllowAnyHeader()
                .SetIsOriginAllowed(origin => true) // allow any origin
                .AllowCredentials());
+
+            app.UseRateLimiting();
 
             app.UseHttpsRedirection();
 

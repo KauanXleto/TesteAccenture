@@ -8,6 +8,7 @@ namespace Accenture.BusinessEntities
 {
     public class LogInfosPaginationRequest
     {
+        public string LogDate { get; set; }
         public string LogIdentification { get; set; }
         public int? LogTypeId { get; set; }
         public string LogIp { get; set; }

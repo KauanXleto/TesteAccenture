@@ -65,6 +65,9 @@ namespace Accenture.Providers
                                     Where 1 = 1
                             ";
 
+                if (!string.IsNullOrWhiteSpace(entity.LogDate))
+                    sql += " and LogDate like '{4}' ";
+
                 if (!string.IsNullOrWhiteSpace(entity.LogIdentification))
                     sql += " and Replace(Replace(LogIdentification, '[', '_'), ']', '_') like '{0}' ";
 
@@ -81,14 +84,16 @@ namespace Accenture.Providers
                             OFFSET({entity.Page} - 1) * {entity.RowsPerpage} ROWS
                             FETCH NEXT {entity.RowsPerpage} ROWS ONLY";
 
-                var whereLogIdentification = NormalizeString.WhereLikeToSq(entity.LogIdentification);
-                var whereLogDescription = NormalizeString.WhereLikeToSq(entity.Description);
-                var whereLogIp = NormalizeString.WhereLikeToSq(entity.LogIp);
+                var whereLogIdentification = NormalizeString.WhereLikeToSql(entity.LogIdentification);
+                var whereLogDescription = NormalizeString.WhereLikeToSql(entity.Description);
+                var whereLogIp = NormalizeString.WhereLikeToSql(entity.LogIp);
+                var whereLogDate = NormalizeString.WhereLikeToSql(entity.LogDate);
 
                 var qeury = string.Format(sql,  /* @0 */ whereLogIdentification,
                                                 /* @1 */ whereLogDescription,
                                                 /* @2 */ entity.LogTypeId,
-                                                /* @3 */ whereLogIp);
+                                                /* @3 */ whereLogIp,
+                                                /* @4 */ whereLogDate);
 
                 var data = conn.Query<dynamic>(qeury).ToList();
 

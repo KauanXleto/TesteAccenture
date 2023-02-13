@@ -180,20 +180,6 @@ export class LogInfo extends Component {
             else if ((currentPage - firtsPage) < 4) {
 
                 initIndex = ((firtsPage - currentPage) > 0 ? initIndex -= 4 : 1);
-
-
-                //if ((totalPages - LastPage) <= 4) {
-                //    initIndex = (totalPages + 1) - paginationCount;
-                //}
-                //else {
-                //    initIndex += 4;
-                //}
-                //if ((firtsPage - currentPage) > 0) {
-                //    initIndex -= 4;
-                //}
-                //else {
-                //    initIndex = 1;
-                //}
             }
         }
 
@@ -237,12 +223,18 @@ export class LogInfo extends Component {
         await this.getLogInfos()
     }
 
-    _onSelect = (item) => {
-        console.log('item _onSelect', item)
-
-        this.setState({
+    _onSelect = async (item) => {
+        await this.setState({
             logTypeId: item.value
         });
+
+        await this.filterInfo();
+    }
+
+    handleKeyPress = (e) => {
+        if (e.charCode == 13 || e.keyCode == 13) {
+            this.filterInfo();
+        }
     }
 
     render() {
@@ -275,6 +267,7 @@ export class LogInfo extends Component {
                                 className="form-control"
                                 placeholder="LogDescription"
                                 id="LogDescription"
+                                onKeyPress={this.handleKeyPress}
                                 onChange={(e) => this.setState({ description: e.target.value })}
                                 value={this.state.description}>
                             </input>
@@ -285,6 +278,7 @@ export class LogInfo extends Component {
                                 className="form-control"
                                 placeholder="LogIdentification"
                                 id="LogIdentification"
+                                onKeyPress={this.handleKeyPress}
                                 onChange={(e) => this.setState({ logIdentification: e.target.value })}
                                 value={this.state.logIdentification}>
                             </input>
@@ -299,6 +293,7 @@ export class LogInfo extends Component {
                                 className="form-control"
                                 placeholder="LogIp"
                                 id="LogIp"
+                                onKeyPress={this.handleKeyPress}
                                 onChange={(e) => this.setState({ logIp: e.target.value })}
                                 value={this.state.logIp}>
                             </input>
@@ -306,7 +301,7 @@ export class LogInfo extends Component {
                         <div className="col-sm-4">
                             <Dropdown
                                 options={this.state.dropDownLogTypes}
-                                onChange={this._onSelect}
+                                onChange={async (item) => { await this._onSelect(item); }}
                                 value={this.state.dropDownLogTypes[0]}
                                 placeholder="Select an option" />
                         </div>

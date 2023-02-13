@@ -38,12 +38,15 @@ namespace Accenture.BusinessEntities
         {
             var result = ELogType.unknown;
 
-            foreach (var name in Enum.GetNames(typeof(ELogType)))
+            if (!string.IsNullOrWhiteSpace(Description))
             {
-                if (StringCompare.ContainsString(Description, name.ToString().Replace("_", " ")))
+                foreach (var name in Enum.GetNames(typeof(ELogType)))
                 {
-                    result = (ELogType)Enum.Parse(typeof(ELogType), name);
-                    continue;
+                    if (StringCompare.ContainsString(Description, name.ToString().Replace("_", " ")))
+                    {
+                        result = (ELogType)Enum.Parse(typeof(ELogType), name);
+                        continue;
+                    }
                 }
             }
 
