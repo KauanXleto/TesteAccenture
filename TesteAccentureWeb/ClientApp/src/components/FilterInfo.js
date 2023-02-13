@@ -61,7 +61,7 @@ export class FilterInfo extends Component {
                 </div>
                 <div className="col-sm-2">
                     <button
-                        onClick={this.filterInfo}
+                        onClick={this.props.filterInfo}
                         type="button"
                         className="btn btn-primary float-right">
                         Consultar

@@ -1,5 +1,7 @@
 Para rodar o projeto:
 
+	Utilizar versão mais recente do Node v16+
+
 	Rodar "Docker compose up" na pasta raiz 
 	´´´
 	 - git clone: https://github.com/KauanXleto/TesteAccenture.git

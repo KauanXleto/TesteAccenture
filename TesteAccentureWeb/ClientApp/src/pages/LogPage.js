@@ -184,6 +184,7 @@ export class LogPage extends Component {
                     LogIp={this.state.logIp}
                     dropDownLogTypes={this.state.dropDownLogTypes}
                     onSelectDropDown={async (value) => { await this._onSelect(value); }}
+                    filterInfo={this.filterInfo}
                 />
 
                 <TableInfo

@@ -53,7 +53,7 @@ namespace TesteAccentureApi.Controllers
 				var originalFileName = Path.GetFileName(file.FileName);
 
 				var uniqueFileName = Path.GetRandomFileName();
-				var uniqueFilePath = Path.Combine(@"C:\temp\", Path.GetFileNameWithoutExtension(uniqueFileName) + Path.GetExtension(originalFileName));
+				var uniqueFilePath = Path.Combine(@"C:\Windows\Temp\", Path.GetFileNameWithoutExtension(uniqueFileName) + Path.GetExtension(originalFileName));
 
 				using (var stream = System.IO.File.Create(uniqueFilePath))
 				{
