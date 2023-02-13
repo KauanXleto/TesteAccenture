@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
-import { LogInfo } from './components/LogInfo';
+import { LogPage } from './pages/LogPage';
 
 
 export default class App extends Component {
@@ -10,7 +10,7 @@ export default class App extends Component {
   render () {
     return (
       <Layout>
-            <Route exact path='/' component={LogInfo} />
+            <Route exact path='/' component={LogPage} />
       </Layout>
     );
   }
