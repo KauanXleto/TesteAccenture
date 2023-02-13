@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TesteAccentureApi</name>
+    </assembly>
+    <members>
+        <member name="M:TesteAccentureApi.Controllers.LogController.ImportLogFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Sava os logs presentes do arquivo enviado
+            </summary>
+            <param name="value"></param>
+            <returns> Informação de quantos registros foram inseridos </returns>
+            <response code = "200"> Quantidade de registros inseridos</response>
+            <response code = "500"> Erro na consulta</response>
+        </member>
+        <member name="M:TesteAccentureApi.Controllers.LogController.GetLogTypes">
+            <summary>
+            Retorna os tipos de logs que foram tipificados para realizar o filtro
+            </summary>
+            <param name="value"></param>
+            <returns> Retorna os tipos de logs que foram tipificados para realizar o filtro </returns>
+            <response code = "200"> Lista de tipos de logs </response>
+            <response code = "500"> Erro na consulta</response>
+            
+        </member>
+        <member name="M:TesteAccentureApi.Controllers.LogController.GetLogInfo(System.String,System.Nullable{System.Int32},System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Filtra os logs importados
+            </summary>
+            <param name="value"></param>
+            <returns> Filtra os logs importados </returns>
+            <response code = "200"> Lista de logs paginados</response>
+            <response code = "500"> Erro na consulta</response>
+        </member>
+        <member name="M:TesteAccentureApi.Controllers.LogController.GetResumeLogInfo">
+            <summary>
+            Resumo dos logs com porcentagem de registros
+            </summary>
+            <param name="value"></param>
+            <returns> Resumo dos logs com porcentagem de registros </returns>
+            <response code = "200"> Agrupagmento de logs com porcentagem </response>
+            <response code = "500"> Erro na consulta</response>
+            
+        </member>
+    </members>
+</doc>

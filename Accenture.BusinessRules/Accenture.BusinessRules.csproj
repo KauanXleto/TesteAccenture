@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Accenture.BusinessRulesInterface\Accenture.BusinessRulesInterface.csproj" />
+    <ProjectReference Include="..\Accenture.Providers\Accenture.Providers.csproj" />
+  </ItemGroup>
+
+</Project>

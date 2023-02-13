@@ -1,0 +1,34 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  sql:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    container_name: sql_server2022
+    ports: # not actually needed, because the two services are on the same network.
+      - "1433:1433" 
+    environment:
+      - ACCEPT_EULA=y
+      - SA_PASSWORD=7RY]pk!-Y5xK]%sv
+    volumes:
+      - ./ScriptsSql/Scripts.sql:/scriptsSql/script.sql
+    command:
+      - /bin/bash
+      - -c 
+      - |
+        /opt/mssql/bin/sqlservr &
+        sleep 30
+        for foo in /scriptsSql/*.sql
+          do /opt/mssql-tools/bin/sqlcmd -U sa -P $$SA_PASSWORD -l 30 -e -i $$foo
+        done
+        sleep infinity
+
+  web_api:
+    build: . # build the Docker image 
+    container_name: web_api_application
+    ports:
+      - "5000:80"
+    environment:
+      DbServer: "sql"
+      DbPort: "1433"
+      DbUser: "SA"
+      Password: "7RY]pk!-Y5xK]%sv"
+      Database: "AccentureDb"

@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33130.400
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteAccentureApi", "TesteAccentureApi\TesteAccentureApi.csproj", "{E4FC481C-B642-48DF-AF9D-7291E33CDE7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessEntities", "BusinessEntities", "{AFD9D0A2-9F39-4FF4-8C52-15819DAE9232}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessRules", "BusinessRules", "{771CFD1C-73A5-4B26-B3D1-8028849C7254}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{279167D1-2354-482D-AFF3-59A7907B0ABC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accenture.BusinessEntities", "Accenture.BusinessEntities\Accenture.BusinessEntities.csproj", "{73D87454-F3B0-4E0A-B48C-C90FF5E453D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accenture.BusinessRules", "Accenture.BusinessRules\Accenture.BusinessRules.csproj", "{F2662F55-B0D6-4A0F-B7B2-FD1604D758A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accenture.Providers", "Accenture.Providers\Accenture.Providers.csproj", "{6492786D-ED0D-4EF4-9398-4BE399C361C8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accenture.BusinessRulesInterface", "Accenture.BusinessRulesInterface\Accenture.BusinessRulesInterface.csproj", "{7B1AF06C-4CCD-461D-8E5F-ECAD53E1266B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accenture.ProvidersInterface", "Accenture.ProvidersInterface\Accenture.ProvidersInterface.csproj", "{D42AED7E-3BF2-4920-B0DE-143BA0C5FC35}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commun", "Commun", "{B22FFC42-DA2C-420A-8997-39AD38ADB2C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accenture.Commun", "Accenture.Commun\Accenture.Commun.csproj", "{B318FF1C-7AD7-4B99-8478-E8CB29AE09C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50B9B74E-20C7-47B6-8DB4-BBBA6190F4A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteAccentureWeb", "TesteAccentureWeb\TesteAccentureWeb.csproj", "{E224A8C2-3645-480E-9590-691B1F273148}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4FC481C-B642-48DF-AF9D-7291E33CDE7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4FC481C-B642-48DF-AF9D-7291E33CDE7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4FC481C-B642-48DF-AF9D-7291E33CDE7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4FC481C-B642-48DF-AF9D-7291E33CDE7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73D87454-F3B0-4E0A-B48C-C90FF5E453D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73D87454-F3B0-4E0A-B48C-C90FF5E453D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73D87454-F3B0-4E0A-B48C-C90FF5E453D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73D87454-F3B0-4E0A-B48C-C90FF5E453D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2662F55-B0D6-4A0F-B7B2-FD1604D758A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2662F55-B0D6-4A0F-B7B2-FD1604D758A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2662F55-B0D6-4A0F-B7B2-FD1604D758A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2662F55-B0D6-4A0F-B7B2-FD1604D758A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6492786D-ED0D-4EF4-9398-4BE399C361C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6492786D-ED0D-4EF4-9398-4BE399C361C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6492786D-ED0D-4EF4-9398-4BE399C361C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6492786D-ED0D-4EF4-9398-4BE399C361C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B1AF06C-4CCD-461D-8E5F-ECAD53E1266B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B1AF06C-4CCD-461D-8E5F-ECAD53E1266B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B1AF06C-4CCD-461D-8E5F-ECAD53E1266B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B1AF06C-4CCD-461D-8E5F-ECAD53E1266B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D42AED7E-3BF2-4920-B0DE-143BA0C5FC35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D42AED7E-3BF2-4920-B0DE-143BA0C5FC35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D42AED7E-3BF2-4920-B0DE-143BA0C5FC35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D42AED7E-3BF2-4920-B0DE-143BA0C5FC35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B318FF1C-7AD7-4B99-8478-E8CB29AE09C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B318FF1C-7AD7-4B99-8478-E8CB29AE09C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B318FF1C-7AD7-4B99-8478-E8CB29AE09C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B318FF1C-7AD7-4B99-8478-E8CB29AE09C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E224A8C2-3645-480E-9590-691B1F273148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E224A8C2-3645-480E-9590-691B1F273148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E224A8C2-3645-480E-9590-691B1F273148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E224A8C2-3645-480E-9590-691B1F273148}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{73D87454-F3B0-4E0A-B48C-C90FF5E453D9} = {AFD9D0A2-9F39-4FF4-8C52-15819DAE9232}
+		{F2662F55-B0D6-4A0F-B7B2-FD1604D758A8} = {771CFD1C-73A5-4B26-B3D1-8028849C7254}
+		{6492786D-ED0D-4EF4-9398-4BE399C361C8} = {279167D1-2354-482D-AFF3-59A7907B0ABC}
+		{7B1AF06C-4CCD-461D-8E5F-ECAD53E1266B} = {771CFD1C-73A5-4B26-B3D1-8028849C7254}
+		{D42AED7E-3BF2-4920-B0DE-143BA0C5FC35} = {279167D1-2354-482D-AFF3-59A7907B0ABC}
+		{B318FF1C-7AD7-4B99-8478-E8CB29AE09C8} = {B22FFC42-DA2C-420A-8997-39AD38ADB2C3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6822AF88-A813-48D2-9E3B-D596F8B211AF}
+	EndGlobalSection
+EndGlobal
